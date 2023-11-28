@@ -1,0 +1,6 @@
+e33c71aeac11f6960cddfdaf238c36aa *DESCRIPTION
+ae84f44b3699162731be798451fd4d39 *NAMESPACE
+d774de70f9dd3100337711ba70304630 *R/aloom.R
+795df94f87dce28de24c463729575239 *man/aloom.Rd
+ada95a6510ba7dacc884694b88b7d937 *tests/testthat.R
+f76ae985b68da8cd1924b62a69b4ea36 *tests/testthat/test_aloom_1.R
