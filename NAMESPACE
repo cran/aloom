@@ -2,5 +2,6 @@
 
 export(aloom)
 import(glmnet)
+import(parallel)
 import(randomForest)
 importFrom(stats,predict)

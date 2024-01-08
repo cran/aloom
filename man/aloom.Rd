@@ -4,23 +4,27 @@
 \alias{aloom}
 \title{All Leave-One-Out Models}
 \usage{
-aloom(train.x, train.y, test.x, method, model.params)
+aloom(train.x, train.y, test.x, method, model.params, mc.cores = 1, seed = 1)
 }
 \arguments{
 \item{train.x}{input matrix, of dimension nobs x nvars; each row is an observation
 vector.}
 
-\item{train.y}{response variable. Expected to be binary factor.}
+\item{train.y}{response variable; binary factor of the same length as nrow(train.x)}
 
 \item{test.x}{Matrix of new values for \code{train.x} at which predictions are to be
 made. Must be a matrix.}
 
-\item{method}{name of the model. Currently allowed values are rf and glmnet}
+\item{method}{name of the model. Currently allowed values are "rf" and "glmnet"}
 
 \item{model.params}{list of model parameters}
+
+\item{mc.cores}{number of cores}
+
+\item{seed}{seed number, default=1}
 }
 \value{
-A list containing predictedY, predictedProbabilityY and allPredictions
+A list containing predicted.y, predicted.prob.y and aloom.probs
 }
 \description{
 Creates a predictive model for a training set, as well as
@@ -33,6 +37,11 @@ library(randomForest)
 x1 <- matrix(rnorm(100 * 20), 100, 20)
 x2 <- matrix(rnorm(30 * 20), 30, 20)
 y1 <- as.factor(sample(c("POS","NEG"), 100, replace = TRUE))
+vnames <- paste0("V",seq(20))
+colnames(x1) <- vnames
+colnames(x2) <- vnames
+rownames(x1) <- paste0("train",seq(nrow(x1)))
+rownames(x2) <- paste0("test",seq(nrow(x2)))
 model.params <- list(ntree=100)
 fit <- aloom(x1,y1,x2,method="rf",model.params)
 
